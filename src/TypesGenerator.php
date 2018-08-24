@@ -144,7 +144,6 @@ class TypesGenerator
 
         $classes = [];
         $propertiesMap = $this->createPropertiesMap($typesToGenerate);
-
         foreach ($typesToGenerate as $typeName => $type) {
             $typeName = is_string($typeName) ? $typeName : $type->localName();
             $typeConfig = $config['types'][$typeName] ?? null;
@@ -648,7 +647,7 @@ class TypesGenerator
             }
 
             $class['fields'][$propertyName] = [
-                'name' => $isArray ? Inflector::pluralize($propertyName) : Inflector::singularize($propertyName),
+                'name' => $isArray ? Inflector::pluralize($propertyName) : $propertyName /*  Inflector::singularize($propertyName) */,
                 'resource' => $property,
                 'range' => $ranges[0],
                 'cardinality' => $cardinality,
